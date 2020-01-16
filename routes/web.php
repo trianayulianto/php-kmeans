@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('MyHome');
-})->name('home.index');
+Auth::routes();
 
-Route::get('/hitung', 'HitungController@index')->name('hitung.index');
+Route::get('/', 'HomeController@loginCheck');
 
-Route::get('/kriteria', 'KriteriaController@index')->name('kriteria.index');
+Route::get('/home', 'HomeController@index')->middleware('auth')->name('home.index');
+
+Route::get('/hitung', 'HitungController@index')->middleware('auth')->name('hitung.index');
+
+Route::get('/kriteria', 'KriteriaController@index')->middleware('auth')->name('kriteria.index');
+
+Route::get('/alternatif', 'AlternatifController@index')->middleware('auth')->name('alternatif.index');
+

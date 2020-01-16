@@ -14,17 +14,7 @@ class AlternatifController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('alternatif.alternatif_index')->render();
     }
 
     /**
@@ -35,7 +25,14 @@ class AlternatifController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store = Alternatif::create([
+            'name' => $request->name,
+            'nilai_kriteria' => $request->data
+        ]);
+        if (! $store) {
+            return response(['erorrs', 'Bad Request.'], 400);
+        }
+        return response(['success', 'Created'], 201);
     }
 
     /**
@@ -46,7 +43,7 @@ class AlternatifController extends Controller
      */
     public function show(Alternatif $alternatif)
     {
-        //
+        return response($alternatif->all(), 200);
     }
 
     /**
@@ -55,9 +52,9 @@ class AlternatifController extends Controller
      * @param  \App\Alternatif  $alternatif
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alternatif $alternatif)
+    public function edit(Request $request, Alternatif $alternatif)
     {
-        //
+        return response($alternatif->find($request->id), 200);
     }
 
     /**
@@ -69,7 +66,15 @@ class AlternatifController extends Controller
      */
     public function update(Request $request, Alternatif $alternatif)
     {
-        //
+        $data = Alternatif::find($request->id);
+        if (! $data) {
+            return response(['erorrs', 'Bad Request.'], 400);
+        }
+        $data->update([
+            'name' => $request->name,
+            'nilai_kriteria' => $request->data
+        ]);
+        return response(['success', 'Accepted'], 202);
     }
 
     /**
@@ -78,8 +83,12 @@ class AlternatifController extends Controller
      * @param  \App\Alternatif  $alternatif
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alternatif $alternatif)
+    public function destroy(Request $request, Alternatif $alternatif)
     {
-        //
+        $delete = Alternatif::destroy($request->id);
+        if (! $delete) {
+            return response(['erorrs', 'Bad Request.'], 400);
+        }
+        return response(['success', 'Accepted'], 202);
     }
 }

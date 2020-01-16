@@ -48,6 +48,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table teble-md text-xs">
+                            <thead id="show_column"></thead>
                             <tbody id="show_clusters">
                             </tbody>
                         </table>
@@ -60,7 +61,23 @@
 
 @push('scripts')
     <script>
-        var $ = jQuery.noConflict();
+        function showColumn() {
+            let elm;
+            $.ajax({
+                type: "get",
+                url: "{{ route('getAllKriteria') }}",
+                dataType: "json",
+                success: function (response) {
+                    elm += '<tr><th width="30">No</th><th>Nama Alternatif</th>';
+                    $.map(response, function (value, key) {
+                        elm += '<th>'+value.name+'</th>';
+                    });
+                    elm += '<th width="160">Cluster</th></tr>';
+
+                    $('#show_column').html(elm);
+                }
+            });
+        }
 
         $('#submit').click(function (e) {
             e.preventDefault();
@@ -86,11 +103,15 @@
                     });
                     $('#show_centroids').html(html);
 
+                    showColumn();
+                    let count = 0;
                     $.map(response, function (data, k) {
                         if (k != 'centroids') {
                             let r = parseInt(k)+1;
                             for (let j = 0; j < data.length; j++) {
-                                element += '<tr><td>'+data[j]['attr']+'</td>';
+                                count++;
+                                element += '<tr><td width="10">'+count+'</td>';
+                                element += '<td>'+data[j]['attr']+'</td>';
                                 for (let i = 0; i < data[j].length - 1; i++) {
                                     element += '<td>'+data[j][i]+'</td>';
                                 }
@@ -98,7 +119,6 @@
                             }
                         }
                     });
-
                     $('#show_clusters').html(element);
                 }
             });

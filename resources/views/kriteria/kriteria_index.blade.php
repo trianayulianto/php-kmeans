@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Kriteria</h1>
-        <a href="#" class="btn btn-primary pull-right" id="addKriteria">
+        <a href="#" class="btn btn-sm btn-primary pull-right" id="addKriteria">
             <i class="fas fa-plus"></i> Tambah
         </a>
     </div>
@@ -13,17 +13,17 @@
         <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-header">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase">Claster</div>
+                    <div class="text-xs font-weight-bold text-primary text-uppercase">Data Kriteria</div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-md text-sm">
                             <thead>
                                 <tr>
-                                    <th width="8%">No</th>
+                                    <th width="30">No</th>
                                     <th>Nama</th>
                                     <th>Keterangan</th>
-                                    <th width="180">Aksi</th>
+                                    <th width="160">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="show_kriteria">
@@ -81,7 +81,7 @@
                             '<td>'+i+'</td>'+
                             '<td>'+value.name+'</td>'+
                             '<td>'+value.description+'</td>'+
-                            '<td><a href="#" class="font-weight-bold text-warning editKriteria" row-id="'+key+'" data-id="'+value.id+'">Ubah</a> | '+
+                            '<td><a href="#" class="font-weight-bold text-warning editKriteria" data-id="'+value.id+'">Ubah</a> | '+
                             '<a href="#" class="font-weight-bold text-danger destroyKriteria" data-id="'+value.id+'">Hapus</a></td>'+
                         '</tr>';
                     });

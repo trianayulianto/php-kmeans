@@ -37,7 +37,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Menu Data Master:</h6>
                     <a class="collapse-item" href="{{ route('kriteria.index') }}">Kriteria</a>
-                    <a class="collapse-item" href="">Dataset</a>
+                    <a class="collapse-item" href="{{ route('alternatif.index') }}">Alternatif</a>
                 </div>
             </div>
         </li>
