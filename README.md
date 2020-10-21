@@ -7,3 +7,6 @@ Berikut adalah fitur pada aplikasi ini:
 - CRUD Kreteria
 - CRUD Alternatif
 - Hasil Perhitungan
+
+#### Kontakku
+` ig: @triana.ylnt `
