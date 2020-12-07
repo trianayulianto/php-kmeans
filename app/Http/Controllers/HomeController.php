@@ -9,11 +9,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // $atribut = \App\Atribut::count();
-        // $nilai = \App\NilaiAtribut::count();
-        // $dataset = \App\Dataset::count();
-        // $users = \App\User::count();
-        return view('MyHome');
+        $kriteria = \App\Kriteria::count();
+        $alternatif = \App\Alternatif::count();
+        $users = \App\User::count();
+        return view('MyHome', compact('kriteria','alternatif','users'));
     }
 
     public function loginCheck()
